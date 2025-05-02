@@ -4,13 +4,23 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { ChevronDown } from "lucide-react";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [studentNumber, setStudentNumber] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
+  const [semester, setSemester] = useState('Summer (2025)');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -20,17 +30,17 @@ const Login: React.FC = () => {
     // Simulate login - in a real app, this would be an API call
     setTimeout(() => {
       // Mock authentication
-      if (email.endsWith('@tip.edu.ph')) {
+      if (userId.endsWith('@tip.edu.ph') || studentNumber) {
         toast({
           title: "Login successful",
-          description: "Welcome back to LearnAhead Portal!"
+          description: "Welcome to LearnAhead Portal!"
         });
         navigate('/dashboard');
       } else {
         toast({
           variant: "destructive",
           title: "Login failed",
-          description: "Please use a valid TIP email address"
+          description: "Please enter valid credentials"
         });
       }
       setIsLoading(false);
@@ -38,79 +48,70 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4">
-      <div className="w-full max-w-[1200px] grid md:grid-cols-2 gap-6">
-        <div className="flex flex-col justify-center p-4 order-2 md:order-1">
-          <div className="space-y-2 mb-8">
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 bg-primary rounded-md"></div>
-              <h1 className="text-3xl font-bold text-primary">LearnAhead</h1>
-            </div>
-            <h2 className="text-4xl font-bold tracking-tight">Welcome back!</h2>
-            <p className="text-muted-foreground">
-              Sign in to your TIP student account to access your courses, assignments, and more.
-            </p>
-          </div>
-          
-          <Card>
-            <CardHeader>
-              <CardTitle>Sign In</CardTitle>
-              <CardDescription>
-                Enter your TIP email and password to access your account
-              </CardDescription>
-            </CardHeader>
-            <form onSubmit={handleSubmit}>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    placeholder="youremail@tip.edu.ph"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
-                    <Button type="button" variant="link" className="p-0 h-auto text-xs">
-                      Forgot password?
-                    </Button>
-                  </div>
-                  <Input 
-                    id="password" 
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? "Signing in..." : "Sign In"}
-                </Button>
-              </CardFooter>
-            </form>
-          </Card>
-          
-          <p className="text-sm text-center text-muted-foreground mt-4">
-            Don't have an account? Contact your school administrator.
-          </p>
-        </div>
-        
-        <div className="relative hidden md:block order-1 md:order-2">
-          <div className="absolute inset-0 bg-primary/10 rounded-xl"></div>
-          <div className="absolute inset-0 flex items-center justify-center p-8">
+    <div className="flex min-h-screen items-center justify-center bg-white">
+      <div className="w-full max-w-[400px] p-4">
+        <div className="flex flex-col items-center justify-center space-y-6 mb-8">
+          <div className="relative w-36 h-36">
             <img
-              src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=1000"
-              alt="Campus"
-              className="rounded-lg object-cover w-full h-full shadow-xl"
+              src="/lovable-uploads/8794fb58-f5cd-4d10-b001-036e3f5ac92f.png"
+              alt="TIP Logo"
+              className="w-full h-full object-contain"
             />
           </div>
+          <h1 className="text-5xl font-bold tracking-wider text-black">ARIS</h1>
         </div>
+        
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div>
+            <Input 
+              placeholder="Student Number" 
+              value={studentNumber}
+              onChange={(e) => setStudentNumber(e.target.value)}
+              className="border border-gray-300 rounded-md h-12"
+            />
+          </div>
+          
+          <div>
+            <Input 
+              placeholder="User ID" 
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              className="border border-gray-300 rounded-md h-12"
+            />
+          </div>
+          
+          <div>
+            <Input 
+              placeholder="Password" 
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="border border-gray-300 rounded-md h-12"
+            />
+          </div>
+          
+          <div>
+            <Select value={semester} onValueChange={setSemester}>
+              <SelectTrigger className="w-full h-12 border border-gray-300 rounded-md bg-white text-black flex justify-between items-center px-4">
+                <SelectValue placeholder="Select semester">{semester}</SelectValue>
+                <ChevronDown className="h-4 w-4" />
+              </SelectTrigger>
+              <SelectContent className="bg-white text-black">
+                <SelectItem value="Summer (2025)">Summer (2025)</SelectItem>
+                <SelectItem value="Second Semester (2024-2025)">Second Semester (2024-2025)</SelectItem>
+                <SelectItem value="First Semester (2024-2025)">First Semester (2024-2025)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <Button 
+            type="submit" 
+            className="w-full h-12 bg-[#FFD700] hover:bg-[#F0C800] text-black font-semibold rounded-md"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Login"}
+          </Button>
+        </form>
       </div>
     </div>
   );
