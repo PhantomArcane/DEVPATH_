@@ -11,7 +11,7 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = true }) => {
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300">
+    <Card className="overflow-hidden hover:shadow-md hover:shadow-primary/20 transition-shadow duration-300 border-primary/30">
       <Link to={`/courses/${course.id}`}>
         <div className="relative h-40 overflow-hidden">
           <img
@@ -20,7 +20,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = true }) => {
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
           {enrolled && (
-            <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+            <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">
               Enrolled
             </div>
           )}
@@ -29,7 +29,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, enrolled = true }) => {
           <div className="flex justify-between items-start">
             <div>
               <p className="text-xs text-muted-foreground">{course.code}</p>
-              <h3 className="font-bold">{course.name}</h3>
+              <h3 className="font-bold text-foreground">{course.name}</h3>
             </div>
           </div>
         </CardHeader>

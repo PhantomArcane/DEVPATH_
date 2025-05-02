@@ -15,23 +15,24 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggleComplete }) => {
   const isOverdue = !task.completed && new Date() > dueDate;
   
   const priorityColors = {
-    low: 'bg-blue-100 text-blue-800',
-    medium: 'bg-yellow-100 text-yellow-800',
-    high: 'bg-red-100 text-red-800'
+    low: 'bg-blue-900 text-blue-200 border-blue-700',
+    medium: 'bg-amber-900 text-amber-200 border-amber-700',
+    high: 'bg-red-900 text-red-200 border-red-700'
   };
 
   return (
-    <div className={`p-4 border rounded-lg mb-2 ${task.completed ? 'bg-gray-50' : 'bg-white'} ${isOverdue ? 'border-red-300' : ''}`}>
+    <div className={`p-4 border rounded-lg mb-2 ${task.completed ? 'bg-muted' : 'bg-card'} ${isOverdue ? 'border-red-700' : 'border-primary/30'}`}>
       <div className="flex items-start gap-3">
         <div className="pt-1">
           <Checkbox 
             checked={task.completed}
             onCheckedChange={(checked) => onToggleComplete(task.id, checked as boolean)}
+            className="border-primary"
           />
         </div>
         <div className="flex-1">
           <div className="flex justify-between items-start">
-            <h4 className={`font-medium ${task.completed ? 'line-through text-muted-foreground' : ''}`}>
+            <h4 className={`font-medium ${task.completed ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
               {task.title}
             </h4>
             <div className="flex gap-2">
@@ -46,7 +47,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggleComplete }) => {
           <p className="text-sm text-muted-foreground mt-1">{task.description}</p>
           <div className="flex justify-between text-xs mt-2">
             <span className="text-muted-foreground">{task.courseName}</span>
-            <span className={`${isOverdue ? 'text-red-500 font-medium' : 'text-muted-foreground'}`}>
+            <span className={`${isOverdue ? 'text-red-400 font-medium' : 'text-muted-foreground'}`}>
               Due: {format(dueDate, 'MMM d, yyyy')}
             </span>
           </div>
