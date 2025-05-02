@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/components/ui/use-toast";
 import {
@@ -51,14 +50,7 @@ const Login: React.FC = () => {
     <div className="flex min-h-screen items-center justify-center bg-white">
       <div className="w-full max-w-[400px] p-4">
         <div className="flex flex-col items-center justify-center space-y-6 mb-8">
-          <div className="relative w-36 h-36">
-            <img
-              src="/lovable-uploads/8794fb58-f5cd-4d10-b001-036e3f5ac92f.png"
-              alt="TIP Logo"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <h1 className="text-5xl font-bold tracking-wider text-black">ARIS</h1>
+          <h1 className="text-5xl font-bold tracking-wider text-black">ARIS PORTAL MANILA</h1>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-3">
