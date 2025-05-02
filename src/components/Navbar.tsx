@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
       <div className="container flex h-16 items-center px-4 sm:px-8">
         <Link to="/dashboard" className="flex items-center gap-2 mr-6">
           <div className="h-6 w-6 bg-primary rounded-md"></div>
-          <span className="font-bold text-xl text-primary hidden sm:inline-block">LearnAhead</span>
+          <span className="font-bold text-xl text-primary hidden sm:inline-block">ARIS Portal</span>
         </Link>
         
         <div className="flex-1 flex justify-center">

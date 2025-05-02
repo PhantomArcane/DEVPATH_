@@ -32,7 +32,7 @@ const Login: React.FC = () => {
       if (userId.endsWith('@tip.edu.ph') || studentNumber) {
         toast({
           title: "Login successful",
-          description: "Welcome to LearnAhead Portal!"
+          description: "Welcome to ARIS Portal!"
         });
         navigate('/dashboard');
       } else {
