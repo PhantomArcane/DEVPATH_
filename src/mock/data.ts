@@ -35,12 +35,140 @@ export interface User {
 
 export const currentUser: User = {
   id: "1",
-  name: "Juan Dela Cruz",
-  email: "jdelacruz@tip.edu.ph",
+  name: "Harold",
+  email: "harold@tip.edu.ph",
   studentId: "TUPT-18-0001",
   program: "BS Computer Science",
   year: 3,
   profileImage: "https://i.pravatar.cc/300?img=8"
+};
+
+export interface LessonInfo {
+  title: string;
+  description: string;
+  duration: string;
+}
+
+export const codingLessons: { [key: string]: LessonInfo[] } = {
+  "CSC101": [
+    { 
+      title: "Introduction to Python", 
+      description: "Learn the syntax and basic concepts of Python programming language", 
+      duration: "45 min" 
+    },
+    { 
+      title: "Variables and Data Types", 
+      description: "Understanding different variable types and data structures", 
+      duration: "30 min" 
+    },
+    { 
+      title: "Control Flow", 
+      description: "Working with conditional statements and loops", 
+      duration: "40 min" 
+    }
+  ],
+  "CSC201": [
+    { 
+      title: "Array Fundamentals", 
+      description: "Understanding array operations and implementation", 
+      duration: "35 min" 
+    },
+    { 
+      title: "Linked Lists", 
+      description: "Implementation and operations on singly and doubly linked lists", 
+      duration: "50 min" 
+    },
+    { 
+      title: "Sorting Algorithms", 
+      description: "Learning different sorting techniques with time complexity analysis", 
+      duration: "60 min" 
+    }
+  ],
+  "CSC301": [
+    { 
+      title: "Database Design", 
+      description: "Entity-relationship modeling and normalization", 
+      duration: "40 min" 
+    },
+    { 
+      title: "SQL Fundamentals", 
+      description: "Writing basic and advanced SQL queries", 
+      duration: "55 min" 
+    },
+    { 
+      title: "Database Management", 
+      description: "Transactions, indexing, and optimization techniques", 
+      duration: "45 min" 
+    }
+  ],
+  "CSC401": [
+    { 
+      title: "Software Development Lifecycle", 
+      description: "Understanding different phases of software development", 
+      duration: "30 min" 
+    },
+    { 
+      title: "Agile Methodology", 
+      description: "Principles of agile development and scrum framework", 
+      duration: "45 min" 
+    },
+    { 
+      title: "Requirements Engineering", 
+      description: "Gathering, analyzing and documenting software requirements", 
+      duration: "50 min" 
+    }
+  ],
+  "CSC402": [
+    { 
+      title: "HTML & CSS Basics", 
+      description: "Building structure and styling for web pages", 
+      duration: "40 min" 
+    },
+    { 
+      title: "JavaScript Fundamentals", 
+      description: "Adding interactivity to web pages using JavaScript", 
+      duration: "60 min" 
+    },
+    { 
+      title: "Backend Development", 
+      description: "Server-side programming with Node.js", 
+      duration: "55 min" 
+    }
+  ],
+  "CSC403": [
+    { 
+      title: "AI Fundamentals", 
+      description: "Core concepts of artificial intelligence", 
+      duration: "45 min" 
+    },
+    { 
+      title: "Machine Learning Basics", 
+      description: "Understanding supervised and unsupervised learning", 
+      duration: "60 min" 
+    },
+    { 
+      title: "Neural Networks", 
+      description: "Building and training basic neural networks", 
+      duration: "70 min" 
+    }
+  ],
+  "CSC404": [
+    { 
+      title: "Mobile UI Design", 
+      description: "Design principles for mobile interfaces", 
+      duration: "35 min" 
+    },
+    { 
+      title: "Native App Development", 
+      description: "Building apps for iOS and Android", 
+      duration: "65 min" 
+    },
+    { 
+      title: "Cross-platform Development", 
+      description: "Using React Native and Flutter", 
+      duration: "50 min" 
+    }
+  ]
 };
 
 export const courses: Course[] = [

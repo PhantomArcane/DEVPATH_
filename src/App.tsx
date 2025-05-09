@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Courses from "./pages/Courses";
 import CourseSearch from "./pages/CourseSearch";
+import CourseDetail from "./pages/CourseDetail";
 import Curriculum from "./pages/Curriculum";
 import Tasks from "./pages/Tasks";
 import NotFound from "./pages/NotFound";
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
           <Route path="/course-search" element={<CourseSearch />} />
           <Route path="/curriculum" element={<Curriculum />} />
           <Route path="/tasks" element={<Tasks />} />

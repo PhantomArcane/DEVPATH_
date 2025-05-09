@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import CourseCard from '@/components/CourseCard';
 import { Input } from "@/components/ui/input";
@@ -8,6 +9,7 @@ import { Search } from "lucide-react";
 import { courses } from '@/mock/data';
 
 const Courses: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const enrolledCourses = courses.filter(course => course.enrolled);
   
@@ -18,6 +20,10 @@ const Courses: React.FC = () => {
         course.description.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : enrolledCourses;
+
+  const handleCourseClick = (id: string) => {
+    navigate(`/courses/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -48,7 +54,9 @@ const Courses: React.FC = () => {
         {filteredCourses.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredCourses.map(course => (
-              <CourseCard key={course.id} course={course} />
+              <div key={course.id} onClick={() => handleCourseClick(course.id)}>
+                <CourseCard course={course} />
+              </div>
             ))}
           </div>
         ) : (
