@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,8 +13,36 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Bell, BookOpen, Calendar, Home, LogOut, Search, User } from 'lucide-react';
 import { currentUser } from '@/mock/data';
+import { useToast } from '@/hooks/use-toast';
 
 const Navbar: React.FC = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleProfile = () => {
+    toast({
+      title: "Profile",
+      description: "Profile page coming soon!",
+    });
+  };
+
+  const handleCalendar = () => {
+    toast({
+      title: "Calendar",
+      description: "Calendar page coming soon!",
+    });
+  };
+
+  const handleLogout = () => {
+    toast({
+      title: "Logged out",
+      description: "You have been logged out successfully.",
+    });
+    setTimeout(() => {
+      navigate('/login');
+    }, 1500);
+  };
+  
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center px-4 sm:px-8">
@@ -88,16 +116,16 @@ const Navbar: React.FC = () => {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleProfile} className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
                 <span>Profile</span>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleCalendar} className="cursor-pointer">
                 <Calendar className="mr-2 h-4 w-4" />
                 <span>Calendar</span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
               </DropdownMenuItem>
