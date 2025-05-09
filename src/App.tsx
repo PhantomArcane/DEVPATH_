@@ -12,6 +12,8 @@ import CourseSearch from "./pages/CourseSearch";
 import CourseDetail from "./pages/CourseDetail";
 import Curriculum from "./pages/Curriculum";
 import Tasks from "./pages/Tasks";
+import Profile from "./pages/Profile";
+import Calendar from "./pages/Calendar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/course-search" element={<CourseSearch />} />
           <Route path="/curriculum" element={<Curriculum />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

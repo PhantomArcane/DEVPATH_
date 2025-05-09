@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,17 +19,11 @@ const Navbar: React.FC = () => {
   const { toast } = useToast();
 
   const handleProfile = () => {
-    toast({
-      title: "Profile",
-      description: "Profile page coming soon!",
-    });
+    navigate('/profile');
   };
 
   const handleCalendar = () => {
-    toast({
-      title: "Calendar",
-      description: "Calendar page coming soon!",
-    });
+    navigate('/calendar');
   };
 
   const handleLogout = () => {
