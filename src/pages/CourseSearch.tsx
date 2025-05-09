@@ -1,44 +1,40 @@
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import CourseCard from '@/components/CourseCard';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
-import { 
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Search, Filter } from "lucide-react";
 import { courses } from '@/mock/data';
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
 
 const CourseSearch: React.FC = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [yearFilter, setYearFilter] = useState<string>('all');
-  const [semesterFilter, setSemesterFilter] = useState<string>('all');
   
+  // Filter courses based on search query and year filter
   const filteredCourses = courses.filter(course => {
-    // Apply search filter
     const matchesSearch = 
-      searchQuery === '' || 
-      course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      course.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
       course.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.description.toLowerCase().includes(searchQuery.toLowerCase());
     
-    // Apply year filter
-    const matchesYear = 
-      yearFilter === 'all' || 
-      course.year.toString() === yearFilter;
+    const matchesYear = yearFilter === 'all' || course.year.toString() === yearFilter;
     
-    // Apply semester filter
-    const matchesSemester = 
-      semesterFilter === 'all' || 
-      course.semester.toString() === semesterFilter;
-    
-    return matchesSearch && matchesYear && matchesSemester;
+    return matchesSearch && matchesYear;
   });
+
+  const handleCourseClick = (id: string) => {
+    navigate(`/courses/${id}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -46,82 +42,66 @@ const CourseSearch: React.FC = () => {
       
       <main className="container px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Find Courses</h1>
+          <h1 className="text-3xl font-bold mb-2">Course Search</h1>
           <p className="text-muted-foreground">
-            Browse available courses or search for specific ones
+            Find and explore programming courses to enhance your skills
           </p>
         </div>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                placeholder="Search by name or code..."
-                className="pl-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            
-            <div>
-              <Select value={yearFilter} onValueChange={setYearFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select year" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Years</SelectItem>
-                  <SelectItem value="1">1st Year</SelectItem>
-                  <SelectItem value="2">2nd Year</SelectItem>
-                  <SelectItem value="3">3rd Year</SelectItem>
-                  <SelectItem value="4">4th Year</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div>
-              <Select value={semesterFilter} onValueChange={setSemesterFilter}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select semester" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Semesters</SelectItem>
-                  <SelectItem value="1">1st Semester</SelectItem>
-                  <SelectItem value="2">2nd Semester</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+          <div className="relative w-full md:w-2/3">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              placeholder="Search courses by name, code, or description..."
+              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
           
-          <div className="flex justify-between items-center">
-            <Button variant="outline" onClick={() => {
-              setSearchQuery('');
-              setYearFilter('all');
-              setSemesterFilter('all');
-            }}>
-              Clear Filters
-            </Button>
+          <div className="w-full md:w-1/3 flex gap-2">
+            <Select value={yearFilter} onValueChange={setYearFilter}>
+              <SelectTrigger className="w-full bg-white">
+                <SelectValue placeholder="Filter by year" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All Years</SelectItem>
+                <SelectItem value="1">Year 1</SelectItem>
+                <SelectItem value="2">Year 2</SelectItem>
+                <SelectItem value="3">Year 3</SelectItem>
+                <SelectItem value="4">Year 4</SelectItem>
+              </SelectContent>
+            </Select>
             
-            <div className="text-sm text-muted-foreground">
-              Showing {filteredCourses.length} courses
-            </div>
+            <Button variant="outline" className="bg-white">
+              <Filter className="h-4 w-4 mr-2" /> More Filters
+            </Button>
           </div>
         </div>
 
         {filteredCourses.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredCourses.map(course => (
-              <CourseCard 
-                key={course.id} 
-                course={course} 
-                enrolled={course.enrolled}
-              />
+              <div key={course.id} onClick={() => handleCourseClick(course.id)}>
+                <CourseCard 
+                  course={course} 
+                  enrolled={course.enrolled}
+                />
+              </div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-lg font-medium">No courses found</p>
-            <p className="text-muted-foreground">Try adjusting your search criteria</p>
+          <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+            <h2 className="text-2xl font-bold mb-4">No courses found</h2>
+            <p className="text-muted-foreground mb-8">
+              Try adjusting your search terms or filters to find more courses.
+            </p>
+            <Button onClick={() => {
+              setSearchQuery('');
+              setYearFilter('all');
+            }}>
+              Reset Filters
+            </Button>
           </div>
         )}
       </main>

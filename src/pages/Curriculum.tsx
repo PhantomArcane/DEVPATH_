@@ -32,12 +32,12 @@ const Curriculum: React.FC = () => {
           <div className="flex justify-between items-center mb-6">
             <TabsList>
               {years.map(year => (
-                <TabsTrigger key={year} value={year}>
+                <TabsTrigger key={year} value={year} className="bg-gray-100">
                   Year {year}
                 </TabsTrigger>
               ))}
             </TabsList>
-            <Button variant="outline">Download Path Map</Button>
+            <Button variant="outline" className="bg-white">Download Path Map</Button>
           </div>
           
           {years.map(year => (

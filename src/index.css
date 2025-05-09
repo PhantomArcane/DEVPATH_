@@ -7,43 +7,43 @@
 
 @layer base {
   :root {
-    --background: 0 0% 10%;
-    --foreground: 45 100% 60%;
+    --background: 0 0% 95%;
+    --foreground: 0 0% 10%;
 
-    --card: 0 0% 12%;
-    --card-foreground: 45 100% 60%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 12%;
-    --popover-foreground: 45 100% 60%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
     --primary: 45 100% 50%;
     --primary-foreground: 0 0% 10%;
 
-    --secondary: 45 80% 40%;
+    --secondary: 45 80% 45%;
     --secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 45 40% 60%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 45 80% 50%;
+    --accent: 45 100% 50%;
     --accent-foreground: 0 0% 10%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 45 30% 30%;
-    --input: 45 30% 30%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
     --ring: 45 80% 50%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 45 100% 60%;
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 45 100% 50%;
     --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 45 40% 30%;
-    --sidebar-accent-foreground: 45 100% 60%;
-    --sidebar-border: 45 20% 20%;
+    --sidebar-accent: 45 40% 40%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 45 20% 85%;
     --sidebar-ring: 45 80% 50%;
   }
 }
@@ -58,4 +58,3 @@
     font-family: 'Poppins', sans-serif;
   }
 }
-
