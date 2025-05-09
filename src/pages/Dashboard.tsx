@@ -34,47 +34,47 @@ const Dashboard: React.FC = () => {
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-                <Card>
+                <Card className="bg-yellow-400 text-black">
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium">Enrolled Courses</CardTitle>
-                    <BookOpen className="h-4 w-4 text-muted-foreground" />
+                    <BookOpen className="h-4 w-4 text-black" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{enrolledCourses.length}</div>
-                    <p className="text-xs text-muted-foreground">Active courses</p>
+                    <p className="text-xs text-black/70">Active courses</p>
                   </CardContent>
                 </Card>
                 
-                <Card>
+                <Card className="bg-yellow-400 text-black">
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium">Pending Tasks</CardTitle>
-                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <Calendar className="h-4 w-4 text-black" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{tasks.filter(t => !t.completed).length}</div>
-                    <p className="text-xs text-muted-foreground">Assignments & quizzes</p>
+                    <p className="text-xs text-black/70">Assignments & quizzes</p>
                   </CardContent>
                 </Card>
                 
-                <Card>
+                <Card className="bg-yellow-400 text-black">
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium">Academic Progress</CardTitle>
-                    <GraduationCap className="h-4 w-4 text-muted-foreground" />
+                    <GraduationCap className="h-4 w-4 text-black" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">75%</div>
-                    <p className="text-xs text-muted-foreground">Towards your degree</p>
+                    <p className="text-xs text-black/70">Towards your degree</p>
                   </CardContent>
                 </Card>
                 
-                <Card>
+                <Card className="bg-yellow-400 text-black">
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <CardTitle className="text-sm font-medium">GPA</CardTitle>
-                    <BarChart3 className="h-4 w-4 text-muted-foreground" />
+                    <BarChart3 className="h-4 w-4 text-black" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">3.7</div>
-                    <p className="text-xs text-muted-foreground">Current GPA</p>
+                    <p className="text-xs text-black/70">Current GPA</p>
                   </CardContent>
                 </Card>
               </div>
@@ -83,7 +83,7 @@ const Dashboard: React.FC = () => {
             {/* My Courses Section */}
             <section>
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">My Courses</h2>
+                <h2 className="text-xl font-bold">My Coding Courses</h2>
                 <Link to="/courses">
                   <Button variant="ghost" size="sm">View all</Button>
                 </Link>
@@ -100,7 +100,7 @@ const Dashboard: React.FC = () => {
           {/* Sidebar */}
           <div className="w-full md:w-1/3 space-y-6">
             {/* Upcoming Tasks */}
-            <Card>
+            <Card className="bg-yellow-400 text-black overflow-hidden">
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-center">
                   <CardTitle>Upcoming Tasks</CardTitle>
@@ -108,9 +108,11 @@ const Dashboard: React.FC = () => {
                     <Button variant="ghost" size="sm">View all</Button>
                   </Link>
                 </div>
-                <CardDescription>You have {tasks.filter(t => !t.completed).length} pending tasks</CardDescription>
+                <CardDescription className="text-black/70">
+                  You have {tasks.filter(t => !t.completed).length} pending tasks
+                </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="bg-white text-black">
                 <div className="space-y-4">
                   {upcomingTasks.length > 0 ? (
                     upcomingTasks.map(task => (
@@ -130,20 +132,20 @@ const Dashboard: React.FC = () => {
             </Card>
             
             {/* Announcements */}
-            <Card>
+            <Card className="bg-yellow-400 text-black">
               <CardHeader>
                 <CardTitle>Announcements</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="bg-white text-black">
                 <div className="space-y-4">
-                  <div className="border-l-4 border-blue-500 pl-4 py-2">
-                    <p className="font-medium">Midterm Schedule Posted</p>
-                    <p className="text-sm text-muted-foreground">View the schedule for upcoming midterm exams</p>
+                  <div className="border-l-4 border-yellow-500 pl-4 py-2">
+                    <p className="font-medium">Coding Challenge Posted</p>
+                    <p className="text-sm text-muted-foreground">Join the weekly coding challenge for extra credit</p>
                     <p className="text-xs text-muted-foreground mt-1">2 days ago</p>
                   </div>
-                  <div className="border-l-4 border-green-500 pl-4 py-2">
-                    <p className="font-medium">Campus Job Fair</p>
-                    <p className="text-sm text-muted-foreground">Annual job fair happening next week</p>
+                  <div className="border-l-4 border-yellow-500 pl-4 py-2">
+                    <p className="font-medium">Tech Industry Webinar</p>
+                    <p className="text-sm text-muted-foreground">Meet industry experts this Friday</p>
                     <p className="text-xs text-muted-foreground mt-1">1 week ago</p>
                   </div>
                 </div>

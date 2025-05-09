@@ -32,7 +32,7 @@ const Login: React.FC = () => {
       if (userId.endsWith('@tip.edu.ph') || studentNumber) {
         toast({
           title: "Login successful",
-          description: "Welcome to ARIS Portal!"
+          description: "Welcome to Dev Path Learning!"
         });
         navigate('/dashboard');
       } else {
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
     <div className="flex min-h-screen items-center justify-center bg-white">
       <div className="w-full max-w-[400px] p-4">
         <div className="flex flex-col items-center justify-center space-y-6 mb-8">
-          <h1 className="text-5xl font-bold tracking-wider text-black">ARIS PORTAL MANILA</h1>
+          <h1 className="text-5xl font-bold tracking-wider text-black">DEV PATH LEARNING</h1>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-3">
